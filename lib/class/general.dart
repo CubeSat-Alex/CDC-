@@ -13,21 +13,21 @@ class General{
   late int cost;
 
   // subsystem
-  late OBC obc;
-  late Communication comm;
-  late Payload payload;
+  late OBCSub obc;
+  late CommunicationSub comm;
+  late PayloadSub payload;
 
 
 }
 
-class OBC{
+class OBCSub{
 
 }
 
-class Communication{
+class CommunicationSub{
 
 }
 
-class Payload{
+class PayloadSub{
 
 }

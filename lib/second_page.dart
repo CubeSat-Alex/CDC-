@@ -1,16 +1,18 @@
 import 'package:cdc_project/Tabs/ADCS.dart';
 import 'package:cdc_project/Tabs/EPS.dart';
-import 'package:cdc_project/Tabs/Payload.dart';
 import 'package:cdc_project/Tabs/communication.dart';
+import 'package:cdc_project/class/general.dart';
 import 'package:flutter/material.dart';
 import 'Functions/navigation_functions.dart';
 import 'Tabs/OBC.dart';
+import 'Tabs/Payload.dart';
 
 
 
 class TabView extends StatefulWidget {
-  const TabView( {Key? key}) : super(key: key);
+  TabView(this.data, {Key? key}) : super(key: key);
 
+  General data ;
   @override
   State<TabView> createState() => _TabViewState();
 }
@@ -221,10 +223,10 @@ class _TabViewState extends State<TabView> {
   void confirmClick() {
     int value = selected.indexWhere((element) => element == true);
     List subsystems = [
-      OBC(),
+      const OBC(),
       const communication(),
       const ADCS(),
-      Payload(),
+      Payload(widget.data),
       const EPS(),
     ];
     if (formKey.currentState!.validate()) {

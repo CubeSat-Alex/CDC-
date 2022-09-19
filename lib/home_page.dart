@@ -4,6 +4,7 @@ import 'Functions/navigation_functions.dart';
 import 'Functions/numeric_field.dart';
 import 'class/general.dart';
 
+
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
 
@@ -530,7 +531,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                               onPressed: () {
                                 print("Done");
-                                navigateAndPush(context, TabView());
+                                navigateAndPush(context, TabView(widget.data));
                                 setState(() {});
                               },
                               child: const Text(
