@@ -14,12 +14,18 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   TextEditingController widthDimension = TextEditingController(text: "1");
   TextEditingController heightDimension = TextEditingController(text: "1");
+  TextEditingController consumption = TextEditingController(text: "1");
+  TextEditingController transfered = TextEditingController(text: "1");
+  TextEditingController antenna = TextEditingController(text: "1");
+
   TextEditingController lifeTime = TextEditingController(text: "0");
   TextEditingController cost = TextEditingController(text: "0");
   // version2
 
+  String ZERO = "LEO";
   String one = "CubeSAT";
-  String two = "Payload";
+  String size = "1U";
+  String two = "Imager";
   String three = "1kg";
 
   @override
@@ -66,12 +72,12 @@ class _HomePageState extends State<HomePage> {
                                         fontWeight: FontWeight.bold,
                                         fontSize: 20)),
                                 const SizedBox(
-                                  width: 70,
+                                  width: 175,
                                 ),
                                 SizedBox(
                                   width: 500,
                                   child: DropdownButtonFormField(
-                                      value: one,
+                                      value: ZERO,
                                       decoration: InputDecoration(
                                           fillColor:
                                               Colors.white.withOpacity(0.5),
@@ -88,24 +94,28 @@ class _HomePageState extends State<HomePage> {
                                           value: "LEO",
                                         ),
                                         const DropdownMenuItem(
-                                          child: Text("CanSAT"),
-                                          value: "CanSAT",
+                                          child: Text("MEO"),
+                                          value: "MEO",
                                         ),
                                         const DropdownMenuItem(
-                                          child: Text("SiriSAT"),
-                                          value: "SiriSAT",
+                                          child: Text("GEO"),
+                                          value: "GEO",
+                                        ),
+                                        const DropdownMenuItem(
+                                          child: Text("Elliptical"),
+                                          value: "Elliptical",
                                         )
                                       ],
                                       onChanged: (value) {
-                                        one = value!;
+                                        ZERO = value!;
                                         setState(() {});
                                       }),
                                 )
                               ],
                             ),
-                          ),
+                          ), //type of orbit .
                           Padding(
-                            padding: const EdgeInsets.only(left: 120, top: 50),
+                            padding: const EdgeInsets.only(left: 120, top: 30),
                             child: Row(
                               children: [
                                 const Text("Select Type of Satellite : ",
@@ -141,9 +151,13 @@ class _HomePageState extends State<HomePage> {
                                           value: "CanSAT",
                                         ),
                                         const DropdownMenuItem(
-                                          child: Text("SiriSAT"),
-                                          value: "SiriSAT",
-                                        )
+                                          child: Text("PicoSAT"),
+                                          value: "PicoSAT",
+                                        ),
+                                        const DropdownMenuItem(
+                                          child: Text("FemtoSAT"),
+                                          value: "FemtoSAT",
+                                        ),
                                       ],
                                       onChanged: (value) {
                                         one = value!;
@@ -152,57 +166,202 @@ class _HomePageState extends State<HomePage> {
                                 )
                               ],
                             ),
-                          ),
-                          const SizedBox(height: 20),
+                          ), //type of satellite .
+                          const SizedBox(height: 5),
                           Padding(
-                            padding: const EdgeInsets.only(left: 120, top: 50),
+                            padding: const EdgeInsets.only(left: 120, top: 20),
                             child: Row(children: [
-                              const Text("Enter your Dimensions : ",
+                              Text(
+                                  " ${one == "CubeSAT" ? "Size of Cube : " : "Raduios of Can : "} ",
                                   style: TextStyle(
                                       color: Colors.white60,
                                       fontStyle: FontStyle.italic,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20)),
                               const SizedBox(
-                                width: 70,
-                              ),
-                              SizedBox(
                                 width: 150,
-                                child: NumericField(widthDimension),
                               ),
-                              const SizedBox(
-                                width: 40,
-                              ),
-                              const Text("X",
-                                  style: TextStyle(
-                                      color: Colors.black54,
-                                      fontStyle: FontStyle.italic,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 22)),
-                              const SizedBox(
-                                width: 40,
-                              ),
-                              SizedBox(
-                                width: 150,
-                                child: NumericField(heightDimension),
-                              ),
+                              one == "CubeSAT"
+                                  ? Row(
+                                      children: [
+                                        Text("",
+                                            style: TextStyle(
+                                                color: Colors.white60,
+                                                fontStyle: FontStyle.italic,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 20)),
+                                        SizedBox(
+                                          width: 30,
+                                        ),
+                                        SizedBox(
+                                          width: 200,
+                                          child: DropdownButtonFormField(
+                                              value: size,
+                                              decoration: InputDecoration(
+                                                  fillColor: Colors.white
+                                                      .withOpacity(0.5),
+                                                  filled: true,
+                                                  border: OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15),
+                                                  )),
+                                              style: const TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 15),
+                                              items: [
+                                                DropdownMenuItem(
+                                                  child: Text("1U"),
+                                                  value: "1U",
+                                                ),
+                                                DropdownMenuItem(
+                                                  child: Text("1.5U"),
+                                                  value: "1.5U",
+                                                ),
+                                                DropdownMenuItem(
+                                                  child: Text("2U"),
+                                                  value: "2U",
+                                                ),
+                                                DropdownMenuItem(
+                                                  child: Text("3U"),
+                                                  value: "3U",
+                                                ),
+                                                DropdownMenuItem(
+                                                  child: Text("6U"),
+                                                  value: "6U",
+                                                ),
+                                                DropdownMenuItem(
+                                                  child: Text("12U"),
+                                                  value: "12U",
+                                                ),
+                                              ],
+                                              onChanged: (value) {
+                                                size = value!;
+                                                setState(() {});
+                                              }),
+                                        )
+                                      ],
+                                    )
+                                  : SizedBox(
+                                      width: 150,
+                                      child: NumericField(widthDimension),
+                                    ),
                             ]),
                           ),
                           const SizedBox(
-                            height: 50,
+                            height: 30,
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 120),
                             child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  const Text("Total Power Consumption : ",
+                                      style: TextStyle(
+                                          color: Colors.white60,
+                                          fontStyle: FontStyle.italic,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20)),
+                                  const SizedBox(
+                                    width: 40,
+                                  ),
+                                  SizedBox(
+                                    width: 150,
+                                    child: NumericField(consumption),
+                                  ),
+                                  const SizedBox(
+                                    width: 30,
+                                  ),
+                                  const Text("MW ",
+                                      style: TextStyle(
+                                          color: Colors.black87,
+                                          fontStyle: FontStyle.italic,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20)),
+                                ]),
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 120),
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  const Text("Transfered RF Power : ",
+                                      style: TextStyle(
+                                          color: Colors.white60,
+                                          fontStyle: FontStyle.italic,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20)),
+                                  const SizedBox(
+                                    width: 100,
+                                  ),
+                                  SizedBox(
+                                    width: 150,
+                                    child: NumericField(transfered),
+                                  ),
+                                  const SizedBox(
+                                    width: 30,
+                                  ),
+                                  const Text("MW ",
+                                      style: TextStyle(
+                                          color: Colors.black87,
+                                          fontStyle: FontStyle.italic,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20)),
+                                ]),
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 120),
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  const Text("Antenna Gain : ",
+                                      style: TextStyle(
+                                          color: Colors.white60,
+                                          fontStyle: FontStyle.italic,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20)),
+                                  const SizedBox(
+                                    width: 165,
+                                  ),
+                                  SizedBox(
+                                    width: 150,
+                                    child: NumericField(antenna),
+                                  ),
+                                  const SizedBox(
+                                    width: 30,
+                                  ),
+                                  const Text("db ",
+                                      style: TextStyle(
+                                          color: Colors.black87,
+                                          fontStyle: FontStyle.italic,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20)),
+                                ]),
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+                          Padding(
+                            padding: const EdgeInsets.only(left: 120),
+                            child: Row(
                               children: [
-                                const Text("mission of Satellite : ",
+                                const Text("Payload mission : ",
                                     style: TextStyle(
                                         color: Colors.white60,
                                         fontStyle: FontStyle.italic,
                                         fontWeight: FontWeight.bold,
                                         fontSize: 20)),
                                 const SizedBox(
-                                  width: 110,
+                                  width: 140,
                                 ),
                                 SizedBox(
                                   width: 500,
@@ -219,8 +378,16 @@ class _HomePageState extends State<HomePage> {
                                           color: Colors.black, fontSize: 15),
                                       items: [
                                         const DropdownMenuItem(
-                                          child: Text("Payload"),
-                                          value: "Payload",
+                                          child: Text("Imager"),
+                                          value: "Imager",
+                                        ),
+                                        const DropdownMenuItem(
+                                          child: Text("Communication"),
+                                          value: "Communication",
+                                        ),
+                                        const DropdownMenuItem(
+                                          child: Text("Weather"),
+                                          value: "Weather",
                                         ),
                                         const DropdownMenuItem(
                                           child: Text("Remote Sensing"),
@@ -236,7 +403,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           const SizedBox(
-                            height: 50,
+                            height: 20,
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 120),
@@ -276,6 +443,10 @@ class _HomePageState extends State<HomePage> {
                                         const DropdownMenuItem(
                                           child: Text("1kg < SAT < 5Kg"),
                                           value: "1kg < SAT < 5Kg",
+                                        ),
+                                        const DropdownMenuItem(
+                                          child: Text("5kg < SAT < 10Kg"),
+                                          value: "5kg < SAT < 10Kg",
                                         )
                                       ],
                                       onChanged: (value) {
@@ -287,7 +458,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           const SizedBox(
-                            height: 50,
+                            height: 20,
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 120),
@@ -307,10 +478,19 @@ class _HomePageState extends State<HomePage> {
                                     width: 150,
                                     child: NumericField(lifeTime),
                                   ),
+                                  const SizedBox(
+                                    width: 30,
+                                  ),
+                                  const Text("years ",
+                                      style: TextStyle(
+                                          color: Colors.black87,
+                                          fontStyle: FontStyle.italic,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20)),
                                 ]),
                           ),
                           const SizedBox(
-                            height: 50,
+                            height: 20,
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 120),

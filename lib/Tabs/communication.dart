@@ -11,19 +11,19 @@ class communication extends StatefulWidget {
 }
 
 class _communicationState extends State<communication> {
-
   TextEditingController FROM = TextEditingController(text: "0");
   TextEditingController TO = TextEditingController(text: "0");
   TextEditingController ips = TextEditingController(text: "0");
   TextEditingController antenna = TextEditingController(text: "0");
 
-
-  String one = "RF Band";
+  String one = "VHF";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Communication'),),
+      appBar: AppBar(
+        title: const Text('Communication'),
+      ),
       body: Center(
         child: Container(
           width: 1100,
@@ -56,8 +56,12 @@ class _communicationState extends State<communication> {
                           style: TextStyle(color: Colors.black, fontSize: 15),
                           items: [
                             DropdownMenuItem(
-                              child: Text("RF Band"),
-                              value: "RF Band",
+                              child: Text("VHF"),
+                              value: "VHF",
+                            ),
+                            DropdownMenuItem(
+                              child: Text("UHF"),
+                              value: "UHF",
                             ),
                             DropdownMenuItem(
                               child: Text("S-Band"),
@@ -83,7 +87,7 @@ class _communicationState extends State<communication> {
               SizedBox(
                 height: 100,
                 child: Padding(
-                  padding: EdgeInsets.only(left: 120,top: 50),
+                  padding: EdgeInsets.only(left: 120, top: 50),
                   child: Row(children: [
                     Text("number of A ntenna's :",
                         style: TextStyle(
@@ -104,7 +108,7 @@ class _communicationState extends State<communication> {
               SizedBox(
                 height: 100,
                 child: Padding(
-                  padding: EdgeInsets.only(left: 120,top: 50),
+                  padding: EdgeInsets.only(left: 120, top: 50),
                   child: Row(children: [
                     Text("RF Recieved BW : ",
                         style: TextStyle(
@@ -125,7 +129,7 @@ class _communicationState extends State<communication> {
               SizedBox(
                 height: 100,
                 child: Padding(
-                  padding: EdgeInsets.only(left: 120,top: 50),
+                  padding: EdgeInsets.only(left: 120, top: 50),
                   child: Row(children: [
                     Text("Power Usage : ",
                         style: TextStyle(
@@ -162,8 +166,6 @@ class _communicationState extends State<communication> {
                   ]),
                 ),
               ),
-
-
             ],
           ),
         ),
