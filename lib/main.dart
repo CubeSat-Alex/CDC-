@@ -17,7 +17,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: "App title",
+        title: "CDC",
         debugShowCheckedModeBanner: false,
         home: HomePage());
   }

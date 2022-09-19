@@ -1,6 +1,5 @@
 import 'package:cdc_project/second_page.dart';
 import 'package:flutter/material.dart';
-
 import 'Functions/navigation_functions.dart';
 import 'Functions/numeric_field.dart';
 

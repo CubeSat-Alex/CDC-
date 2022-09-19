@@ -230,7 +230,6 @@ class _TabViewState extends State<TabView> {
         navigateAndPush(context, subsystems[value]);
       }
     }
-
     int selectedIndex = selected.indexWhere((element) => element == true);
     if (selectedIndex != -1) {
     } else {
