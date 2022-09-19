@@ -1,9 +1,5 @@
-import 'dart:io';
-import 'dart:typed_data';
-
 import 'package:cdc_project/second_page.dart';
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'Functions/navigation_functions.dart';
 import 'Functions/numeric_field.dart';
 import 'class/general.dart';
@@ -14,26 +10,25 @@ class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
 
   General data = General();
-
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  TextEditingController widthDimension = TextEditingController(text: "1");
+  TextEditingController canRadius = TextEditingController(text: "1");
   TextEditingController heightDimension = TextEditingController(text: "1");
   TextEditingController consumption = TextEditingController(text: "1");
   TextEditingController transfered = TextEditingController(text: "1");
   TextEditingController antenna = TextEditingController(text: "1");
   TextEditingController lifeTime = TextEditingController(text: "0");
   TextEditingController cost = TextEditingController(text: "0");
-  // version2
 
-  String ZERO = "LEO";
-  String one = "CubeSAT";
-  String size = "1U";
+
+  String orbitSelector = "LEO";
+  String sateTypeSelector = "CubeSAT";
+  String sateSize = "1U";
   String payloadSelector = "Imager";
-  String three = "1kg";
+  String weightSelector = "1kg";
 
   void onclick()  {
     PDF pdf = PDF(widget.data);
@@ -92,7 +87,7 @@ class _HomePageState extends State<HomePage> {
                               SizedBox(
                                 width: 500,
                                 child: DropdownButtonFormField(
-                                    value: ZERO,
+                                    value: orbitSelector,
                                     decoration: InputDecoration(
                                         fillColor:
                                             Colors.white.withOpacity(0.5),
@@ -122,7 +117,8 @@ class _HomePageState extends State<HomePage> {
                                       )
                                     ],
                                     onChanged: (value) {
-                                      ZERO = value!;
+                                      orbitSelector = value!;
+                                      widget.data.orbitType = orbitSelector;
                                       setState(() {});
                                     }),
                               )
@@ -145,7 +141,7 @@ class _HomePageState extends State<HomePage> {
                               SizedBox(
                                 width: 500,
                                 child: DropdownButtonFormField(
-                                    value: one,
+                                    value: sateTypeSelector,
                                     decoration: InputDecoration(
                                         fillColor:
                                             Colors.white.withOpacity(0.5),
@@ -175,7 +171,8 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ],
                                     onChanged: (value) {
-                                      one = value!;
+                                      sateTypeSelector = value!;
+                                      widget.data.satType = sateTypeSelector;
                                       setState(() {});
                                     }),
                               )
@@ -187,7 +184,7 @@ class _HomePageState extends State<HomePage> {
                           padding: const EdgeInsets.only(left: 120, top: 20),
                           child: Row(children: [
                             Text(
-                                " ${one == "CubeSAT" ? "Size of Cube : " : "Raduios of Can : "} ",
+                                " ${sateTypeSelector == "CubeSAT" ? "Size of Cube : " : "Raduios of Can : "} ",
                                 style: const TextStyle(
                                     color: Colors.white60,
                                     fontStyle: FontStyle.italic,
@@ -196,7 +193,7 @@ class _HomePageState extends State<HomePage> {
                             const SizedBox(
                               width: 150,
                             ),
-                            one == "CubeSAT"
+                            sateTypeSelector == "CubeSAT"
                                 ? Row(
                                     children: [
                                       const Text("",
@@ -211,7 +208,7 @@ class _HomePageState extends State<HomePage> {
                                       SizedBox(
                                         width: 200,
                                         child: DropdownButtonFormField(
-                                            value: size,
+                                            value: sateSize,
                                             decoration: InputDecoration(
                                                 fillColor: Colors.white
                                                     .withOpacity(0.5),
@@ -251,7 +248,8 @@ class _HomePageState extends State<HomePage> {
                                               ),
                                             ],
                                             onChanged: (value) {
-                                              size = value!;
+                                              sateSize = value!;
+                                              widget.data.unitsSize = sateSize;
                                               setState(() {});
                                             }),
                                       )
@@ -259,7 +257,7 @@ class _HomePageState extends State<HomePage> {
                                   )
                                 : SizedBox(
                                     width: 150,
-                                    child: NumericField(widthDimension),
+                                    child: NumericField(canRadius, onChange: (val){widget.data.canRadius = double.parse(val).toInt();},),
                                   ),
                           ]),
                         ),
@@ -282,7 +280,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 SizedBox(
                                   width: 150,
-                                  child: NumericField(consumption),
+                                  child: NumericField(consumption, onChange: (val){widget.data.powerConsumption = double.parse(val).toInt();},),
                                 ),
                                 const SizedBox(
                                   width: 30,
@@ -314,7 +312,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 SizedBox(
                                   width: 150,
-                                  child: NumericField(transfered),
+                                  child: NumericField(transfered, onChange: (val){widget.data.rfPower = double.parse(val).toInt();}),
                                 ),
                                 const SizedBox(
                                   width: 30,
@@ -346,7 +344,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 SizedBox(
                                   width: 150,
-                                  child: NumericField(antenna),
+                                  child: NumericField(antenna, onChange: (val){widget.data.gain = double.parse(val).toInt();}),
                                 ),
                                 const SizedBox(
                                   width: 30,
@@ -435,7 +433,7 @@ class _HomePageState extends State<HomePage> {
                               SizedBox(
                                 width: 500,
                                 child: DropdownButtonFormField(
-                                    value: three,
+                                    value: weightSelector,
                                     decoration: InputDecoration(
                                         fillColor:
                                             Colors.white.withOpacity(0.5),
@@ -464,7 +462,8 @@ class _HomePageState extends State<HomePage> {
                                       )
                                     ],
                                     onChanged: (value) {
-                                      three = value!;
+                                      weightSelector = value!;
+                                      widget.data.weight = weightSelector;
                                       setState(() {});
                                     }),
                               )
@@ -490,7 +489,10 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 SizedBox(
                                   width: 150,
-                                  child: NumericField(lifeTime),
+                                  child: NumericField(lifeTime, onChange: (val){
+                                    widget.data.lifeTime = double.parse(val).toInt();
+
+                                  }),
                                 ),
                                 const SizedBox(
                                   width: 30,
@@ -520,7 +522,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                             SizedBox(
                               width: 150,
-                              child: NumericField(cost),
+                              child: NumericField(cost, onChange: (val){widget.data.cost = double.parse(val).toInt();}),
                             ),
                           ]),
                         ),

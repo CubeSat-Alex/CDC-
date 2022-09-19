@@ -22,7 +22,9 @@ class PDF{
 
     pdf.addPage(
       pw.Page(
-        build: (pw.Context context) => pw.Column(children: [
+        build: (pw.Context context) => pw.Column(
+          mainAxisAlignment: pw.MainAxisAlignment.start,
+            children: [
           pw.Row(
               mainAxisAlignment: pw.MainAxisAlignment.spaceEvenly,
               children: [
@@ -34,28 +36,59 @@ class PDF{
           ),
           pw.Center(child: pw.Padding(
             padding: const pw.EdgeInsets.all(10),
-              child: pw.Text('CDC - Report', style: pw.TextStyle(fontSize: 20, fontWeight: pw.FontWeight.bold)))),
+              child: pw.Text('CDC - Report', style: pw.TextStyle(fontSize: 20)))),
 
-          pw.Text('General'),
+          pw.Row(children: [pw.Padding(
+            child: pw.Text('General'),
+            padding: const pw.EdgeInsets.only(bottom: 4)
+          )]),
           pw.Table(
               border: pw.TableBorder.all(width: 0.2),
-
               children: [
-             pw.TableRow(children: [ pw.Text('orbit type') ,  pw.Text(data.orbitType)]),
-             pw.TableRow(children: [ pw.Text('satellite type') ,  pw.Text(data.satType)]),
-             pw.TableRow(children: [ pw.Text('Size') ,  pw.Text(data.unitsSize.toString())]),
-             pw.TableRow(children: [ pw.Text('Total power consumption') ,  pw.Text(data.powerConsumption.toString())]),
-             pw.TableRow(children: [ pw.Text('RF power') ,  pw.Text(data.rfPower.toString())]),
-             pw.TableRow(children: [ pw.Text('Antenna Gain') ,  pw.Text(data.gain.toString())]),
-             pw.TableRow(children: [ pw.Text('payload mission') ,  pw.Text(data.payloadMission)]),
-             pw.TableRow(children: [ pw.Text('weight') ,  pw.Text(data.weight)]),
-             pw.TableRow(children: [ pw.Text('life time') ,  pw.Text(data.lifeTime.toString())]),
-             pw.TableRow(children: [ pw.Text('cost') ,  pw.Text(data.cost.toString())]),
-          ])
+             pw.TableRow(children: [ cell('Orbit type') ,  cell(data.orbitType)]),
+             pw.TableRow(children: [ cell('Satellite type') ,  cell(data.satType)]),
+             pw.TableRow(children: [ cell('Size') ,  cell(data.unitsSize.toString())]),
+             pw.TableRow(children: [ cell('Total power consumption') ,  cell(data.powerConsumption.toString())]),
+             pw.TableRow(children: [ cell('RF power') ,  cell(data.rfPower.toString())]),
+             pw.TableRow(children: [ cell('Antenna Gain') ,  cell(data.gain.toString())]),
+             pw.TableRow(children: [ cell('Payload mission') ,  cell(data.payloadMission)]),
+             pw.TableRow(children: [ cell('Weight') ,  cell(data.weight)]),
+             pw.TableRow(children: [ cell('Life time') ,  cell(data.lifeTime.toString())]),
+             pw.TableRow(children: [ cell('Cost') ,  cell(data.cost.toString())]),
+          ]),
+
+              pw.SizedBox(height: 10),
+
+              pw.Row(children: [pw.Padding(
+                  child: pw.Text('OBC'),
+                  padding: const pw.EdgeInsets.only(bottom: 4)
+              )]),
+              pw.Table(
+                  border: pw.TableBorder.all(width: 0.2),
+                  children: [
+                    pw.TableRow(children: [ cell('orbit type') ,  cell(data.orbitType)]),
+                    pw.TableRow(children: [ cell('satellite type') ,  cell(data.satType)]),
+                    pw.TableRow(children: [ cell('Size') ,  cell(data.unitsSize.toString())]),
+                    pw.TableRow(children: [ cell('Total power consumption') ,  cell(data.powerConsumption.toString())]),
+                    pw.TableRow(children: [ cell('RF power') ,  cell(data.rfPower.toString())]),
+                    pw.TableRow(children: [ cell('Antenna Gain') ,  cell(data.gain.toString())]),
+                    pw.TableRow(children: [ cell('payload mission') ,  cell(data.payloadMission)]),
+                    pw.TableRow(children: [ cell('weight') ,  cell(data.weight)]),
+                    pw.TableRow(children: [ cell('life time') ,  cell(data.lifeTime.toString())]),
+                    pw.TableRow(children: [ cell('cost') ,  cell(data.cost.toString())]),
+                  ]),
 
 
         ]),
       ),
     );
   }
+
+  pw.Widget cell(val){
+    return pw.Padding(
+      child: pw.Text(val, style: const pw.TextStyle(fontSize: 10)),
+      padding: const pw.EdgeInsets.only(left: 5, top: 1, bottom: 1),
+    );
+  }
+
 }

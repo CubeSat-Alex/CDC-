@@ -1,16 +1,16 @@
 
 class General{
-  late String orbitType;
-  late String satType;
-  late int canRadius;
-  late int unitsSize;
-  late int powerConsumption;
-  late int rfPower;
-  late int gain;
-  late String payloadMission;
-  late String weight;
-  late int lifeTime;
-  late int cost;
+   String orbitType = 'LEO';
+   String satType = 'CubeSAT';
+   int canRadius= 2;
+   String unitsSize= '2U';
+   int powerConsumption = 500;
+   int rfPower = 600;
+   int gain = 30;
+   String payloadMission = 'Weather';
+   String weight= '3 KG';
+   int lifeTime = 5;
+   int cost = 3000;
 
   // subsystem
   late OBCSub obc;
