@@ -6,8 +6,10 @@ import 'package:flutter/material.dart';
 import 'Functions/navigation_functions.dart';
 import 'Tabs/OBC.dart';
 
+
+
 class TabView extends StatefulWidget {
-  const TabView({Key? key}) : super(key: key);
+  const TabView( {Key? key}) : super(key: key);
 
   @override
   State<TabView> createState() => _TabViewState();
@@ -219,10 +221,10 @@ class _TabViewState extends State<TabView> {
   void confirmClick() {
     int value = selected.indexWhere((element) => element == true);
     List subsystems = [
-      const OBC(),
+      OBC(),
       const communication(),
       const ADCS(),
-      const Payload(),
+      Payload(),
       const EPS(),
     ];
     if (formKey.currentState!.validate()) {

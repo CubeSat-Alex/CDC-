@@ -1,4 +1,3 @@
-import 'package:cdc_project/Functions/navigation_functions.dart';
 import 'package:flutter/material.dart';
 import '../Functions/numeric_field.dart';
 import 'package:flutter_switch/flutter_switch.dart';
@@ -328,7 +327,8 @@ class _OBCState extends State<OBC> {
                   ),
                   onPressed: () {
                     print("OBC");
-                    Navigator.of(context).pop();
+                    showAlertDialog(context);
+                    // Navigator.of(context).pop();
                     setState(() {});
                   },
                   child: const Text(
@@ -342,6 +342,31 @@ class _OBCState extends State<OBC> {
           ),
         ),
       ),
+    );
+  }
+  showAlertDialog(BuildContext context) {
+
+    // set up the button
+    Widget okButton = TextButton(
+      child: const Text("Got it"),
+      onPressed: () { Navigator.pop(context);},
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: const Text("Warning"),
+      content: const Text("raspberry bi has only 2 UART port"),
+      actions: [
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
     );
   }
 }
