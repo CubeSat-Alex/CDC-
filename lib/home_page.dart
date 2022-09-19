@@ -1,8 +1,13 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:cdc_project/second_page.dart';
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'Functions/navigation_functions.dart';
 import 'Functions/numeric_field.dart';
 import 'class/general.dart';
+import 'class/pdf.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -30,6 +35,11 @@ class _HomePageState extends State<HomePage> {
   String payloadSelector = "Imager";
   String three = "1kg";
 
+  void onclick()  {
+    PDF pdf = PDF(widget.data);
+    pdf.export();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -41,6 +51,10 @@ class _HomePageState extends State<HomePage> {
       ),
       child: Scaffold(
           backgroundColor: Colors.transparent,
+          floatingActionButton: FloatingActionButton(
+            onPressed: onclick,
+            child: const Text('Test PDF'),
+          ),
           appBar: AppBar(
             title: const Text("EGSA CDC"),
             elevation: 0,
@@ -348,8 +362,6 @@ class _HomePageState extends State<HomePage> {
                         const SizedBox(
                           height: 30,
                         ),
-
-//////////////////////////////////////////////////////////////////////////////////////////////
 
                         Padding(
                           padding: const EdgeInsets.only(left: 120),
